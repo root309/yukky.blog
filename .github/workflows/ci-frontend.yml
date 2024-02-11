@@ -42,12 +42,19 @@ jobs:
         run: |
           cd frontend
           npm run build
-      
+
+      - name: List output files
+        run: |
+          cd frontend
+          ls -la
+          echo "Listing the content of the out directory"
+          ls -la out
+
       - name: Upload artifact for deployment
         if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./out
+          path: ./frontend/out
 
   deploy:
     if: github.event_name == 'push'
