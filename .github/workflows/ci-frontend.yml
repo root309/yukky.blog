@@ -31,8 +31,11 @@ jobs:
       
       - name: Install dependencies        
         run: |
+          pwd
+          ls -la
           cd frontend
-          npm ci 
+          ls -la
+          npm ci
 
       - name: Build with Next.js
         run: |
