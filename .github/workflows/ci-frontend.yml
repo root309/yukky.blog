@@ -29,10 +29,11 @@ jobs:
           node-version: '20.11.0'
           cache: 'npm'
       
-      - name: Install dependencies
-        cd frontend
-        run: npm ci
-      
+      - name: Install dependencies        
+        run: |
+          cd frontend
+          npm ci 
+
       - name: Build with Next.js
         run: |
           cd frontend
