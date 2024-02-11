@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  basePath: '/yukky.blog',
+  assetPrefix: '/yukky.blog/',
+}
 
-export default nextConfig;
+module.exports = nextConfig
