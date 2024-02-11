@@ -47,7 +47,7 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./out
+          path: ./frontend/out
 
   deploy:
     if: github.event_name == 'push'
