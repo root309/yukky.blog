@@ -1,0 +1,20 @@
+.blogBox {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.blogBox:hover {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.title {
+  margin-top: 0;
+}
+
+.readMore {
+  text-decoration: none;
+  color: blue;
+}
