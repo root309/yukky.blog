@@ -46,8 +46,15 @@ jobs:
       - name: Upload artifact for deployment
         if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v2
+        run: |
+          pwd
+          ls -la
+          cd frontend
+          ls -la
+          npm ci
+
         with:
-          path: ./frontend/out
+          path: ./out
 
   deploy:
     if: github.event_name == 'push'
