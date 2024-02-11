@@ -30,10 +30,12 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
+        cd frontend
         run: npm ci
       
       - name: Build with Next.js
         run: |
+          cd frontend
           npm run build
           npm run export
       
