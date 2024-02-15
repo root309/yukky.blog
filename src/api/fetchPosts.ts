@@ -1,14 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-// 環境変数の型定義
-interface Env {
-  SUPABASE_URL: string;
-  SUPABASE_ANON_KEY: string;
-}
-
 export default async (req: VercelRequest, res: VercelResponse) => {
-  const { SUPABASE_URL, SUPABASE_ANON_KEY } = process.env as Env;
+  const SUPABASE_URL = process.env.SUPABASE_URL;
+  const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    console.error('Environment variables SUPABASE_URL or SUPABASE_ANON_KEY are not defined.');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
