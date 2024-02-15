@@ -2,13 +2,22 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import BlogBox from '../components/BlogBox';
 
+interface Post {
+  id: string;
+  title: string;
+  summary: string;
+  content: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
 const Home: NextPage = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const loadPosts = async () => {
       const response = await fetch('/api/fetchPosts');
-      const fetchedPosts = await response.json();
+      const fetchedPosts: Post[] = await response.json();
       console.log(fetchedPosts);
       setPosts(fetchedPosts);
     };
