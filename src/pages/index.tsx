@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import BlogBox from '../components/BlogBox';
-import { fetchPosts } from '../lib/blogApi';
-import CreatePostForm from '../components/CreatePostForm';
 
 const Home: NextPage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const loadPosts = async () => {
-      const fetchedPosts = await fetchPosts();
-      console.log(fetchedPosts); 
+      const response = await fetch('/api/fetchPosts');
+      const fetchedPosts = await response.json();
+      console.log(fetchedPosts);
       setPosts(fetchedPosts);
     };
     loadPosts();
