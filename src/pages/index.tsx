@@ -1,29 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import type { NextPage } from 'next';
+import React from 'react';
+import type { NextPage, GetStaticProps } from 'next';
 import BlogBox from '../components/BlogBox';
+import { supabase } from '../lib/supabaseClient';
 
 interface Post {
   id: string;
   title: string;
   summary: string;
   content: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
 }
 
-const Home: NextPage = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+interface Props {
+  posts: Post[];
+}
 
-  useEffect(() => {
-    const loadPosts = async () => {
-      const response = await fetch('/api/fetchPosts');
-      const fetchedPosts: Post[] = await response.json();
-      console.log(fetchedPosts);
-      setPosts(fetchedPosts);
-    };
-    loadPosts();
-  }, []);
+export const getStaticProps: GetStaticProps = async () => {
+  const { data: posts, error } = await supabase
+    .from('Posts')
+    .select('*')
+    .order('created_at', { ascending: false });
 
+  if (error) {
+    console.error('Error fetching posts:', error);
+    return { props: { posts: [] } };
+  }
+
+  return { props: { posts } };
+};
+
+const Home: NextPage<Props> = ({ posts }) => {
   return (
     <div>
       <h1>ブログ記事一覧</h1>
