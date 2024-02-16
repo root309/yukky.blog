@@ -21,7 +21,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     console.error('Error fetching posts:', error);
     return res.status(500).json({ error: 'Failed to fetch posts' });
   }
-
+  console.log('Fetched posts:', data);
   res.status(200).json(data);
 };
 
