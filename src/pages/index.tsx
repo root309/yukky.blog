@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const Home: NextPage<Props> = ({ posts }) => {
   return (
     <div>
-      <h1>ブログ記事一覧</h1>
+      <h1>ゆっきーのやりたい放題ブログ</h1>
       <div>
         {posts.map((post) => (
           <BlogBox key={post.id} id={post.id} title={post.title} summary={post.summary} />
